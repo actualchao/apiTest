@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>axios_img</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<body>
+
+  <script>
+    // axios.get('https://tse2-mm.cn.bing.net/th/id/OIP.ZwatLnpo7avdvBtWRHB8TwHaE8?pid=Api&rs=1', { responseType: 'blob' })
+    //   .then(function (response) {
+    //     const url = URL.createObjectURL(new Blob([response.data]))
+    //     const img = document.createElement('img')
+    //     img.onload = () => { URL.revokeObjectURL(url) }
+    //     img.src = url
+    //     document.body.appendChild(img)
+    //   })
+
+
+
+    var xhr = new XMLHttpRequest()
+    // 使用HTTP POST请求与服务器交互数据
+    xhr.open("GET", "http://172.18.109.94:9000/cmdb/file/pic?url=file:////data/dubbo/cmdb/upload/050129.jpg", true)
+    // 设置发送数据的请求格式
+    xhr.responseType = "blob"
+    xhr.onload = function () {
+      var blob = new Blob([xhr.response])
+      const url = URL.createObjectURL(blob)
+      const img = document.createElement('img')
+      img.onload = () => { URL.revokeObjectURL(url) }
+      img.src = url
+      document.body.appendChild(img)
+    }
+    // 将用户输入值序列化成字符串
+    xhr.send(JSON.stringify(this.searchData))
+  </script>
+
+</body>
+
+</html>

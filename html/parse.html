@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box" contenteditable="true"
+    style="width:600px;min-height:300px;text-align:justify ;margin:100px auto;border: 1px solid orange;">
+    中国青年网北京8月10日电(记者 曾繁华)
+    “知伯以国士遇臣，臣故国士报之。”《战国策》中这句名言堪称中国“礼贤下士”“士为知己者死”文化传统的生动写照。历朝历代，“国士”一向被视作社稷的金梁玉柱;如今，“国士”一词可以视作各阶层、各行业人才的统称。新时代的“国士”们，一直受到党和政府乃至社会的高度关怀、重视与认可。
+  </div>
+  <div id="tip" style="width:600px;min-height: 200px;margin: 20px auto;border:1px solid #ddd;"></div>
+  <script type="text/javascript" src="../js/jq1.9.js"></script>
+  <script>
+    document.querySelector('#box').addEventListener('click', (e) => {
+      navigator.clipboard.writeText('要复制的文本')
+        .then(() => {
+          console.log('文本已经成功复制到剪切板');
+        })
+        .catch(err => {
+          // 如果用户没有授权，则抛出异常
+          console.error('无法复制此文本：', err);
+        });
+    });
+  </script>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>监听复制</title>
+</head>
+<body>
+	<div>
+		事件的默认行为与事件的来源和事件处理函数相关：
+		1.如果默认事件没有取消，就复制到选区（如果有选中内容）到剪切板；
+		2.如果取消了默认事件，但是调用了setData()方法：就复制clipboardData的内容到到剪切板；
+		3.如果取消了默认行为，而且没有调用setData()方法，就没有任何行为。
+	</div>
+</body>
+<script type="text/javascript">
+	document.addEventListener("copy",function(e){
+		//取消默认事件，才能修改复制的值
+		e.preventDefault();
+		//复制的内容
+		var copyTxt = `${window.getSelection(0).toString()}
+					\n作者：红烧鱼
+					\n链接：${window.location.href}
+					\n来源：本地
+					\n著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。`
+		if(e.clipboardData) {
+          	e.clipboardData.setData('text/plain',  copyTxt);
+	 	}
+      	else if(window.clipboardData){
+      		return window.clipboardData.setData("text", copyTxt);
+      	}
+	})
+</script>
+</html>

@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Clipboard</title>
+</head>
+
+<body>
+  <div class="flex-box">
+    <p>asdf</p>
+    <p>sdfasdf</p>
+    <p>sdf</p>
+    <p>sdfasdf`sdf</p>
+    <p>sdgasdfasdf</p>
+  </div>
+</body>
+
+<script>
+
+  window.addEventListener('copy', (e) => {
+    console.log(123);
+
+    console.log(e);
+  })
+
+  navigator.clipboard.writeText(123)
+
+
+
+
+</script>
+
+</html>
